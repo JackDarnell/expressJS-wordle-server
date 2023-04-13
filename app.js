@@ -1,10 +1,13 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
-const PORT = 3000;
+const PORT = 9000;
 
-var wordList = ['hello', 'world', 'goodbye', 'cruel', 'notes', 'quest'];
+app.use(cors());
 
-app.get('/newWord', (req, res) => res.send(wordList[Math.floor(Math.random() * wordList.length)]));
+var wordList = ['hello', 'world', 'goody', 'cruel', 'notes', 'quest'];
+
+app.get('/newWord', cors(), (req, res) => res.json({ secret : wordList[Math.floor(Math.random() * wordList.length)].toUpperCase() }));
 
 app.listen(PORT, (error) =>{
     if(!error)
